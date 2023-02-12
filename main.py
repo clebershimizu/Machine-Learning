@@ -59,23 +59,28 @@ def neural_network(inputs, weights):
      Returns (in this order):
        out - a 1 x 1 NumPy array, representing the output of the neural network
     """
-    #Your code here
-    raise NotImplementedError
+    weightst = np.transpose(weights)
+    _out = np.matmul(weightst, inputs)
+
+    out = np.tanh(_out)
+    return out
 
 def scalar_function(x, y):
     """
     Returns the f(x,y) defined in the problem statement.
     """
-    #Your code here
-    raise NotImplementedError
+    if x <= y: return x * y
+    elif x > y: return x/y
+    
 
 def vector_function(x, y):
     """
     Make sure vector_function can deal with vector input x,y 
     """
-    #Your code here
-    raise NotImplementedError
-
-n = input('Enter the value of n')
-m = int(n)
-randomization(m)
+    def scalar_function(x, y):
+        if x <= y: return x * y
+        elif x > y: return x/y
+    
+    funct = np.vectorize(scalar_function)
+    
+    return funct(x, y)
